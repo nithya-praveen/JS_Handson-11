@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+    <style>
+        .qst {
+            color: blue;
+        }
+
+        .ans {
+            color: rgb(149, 4, 4);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Promises Async Await</h1>
+    <b class="qst">Q1.</b>
+    <b class="ans">
+        Write one example explaining how you can write a callback function.
+    </b> <br><br>
+    <b class="qst">A1.</b><button id="button">Click Me</button> <br>
+    document.getElementById("button").addEventListener("click", function() <br>
+    { <br>
+    console.log("Button was clicked"); <br>
+    }, false); <br> <br>
+    In this example, an event listener was used as a callback which is executed when a specific event occurs -
+    in this case, the event is clicking the button with the ID “Button1”. Once the button has been clicked,
+    fulfilling the conditions for the callback function, the function will be executed and the message “Button
+    was clicked” will be displayed in the console. In this example, the parameter “false” was also used to
+    ensure backward compatibility with older browsers.<br><br>
+
+    <b class="qst">Q2.</b>
+    <b class="ans"> "Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2
+        should be printed after 2 sec, 3 should be printed after 3 sec, and so on. <br>
+        Explain callback hell. <br>
+        Numbers <br>
+        1 <br>
+        2 <br>
+        3 <br>
+        4 <br>
+        5 <br>
+        6 <br>
+        7 <br><br>
+    </b>
+    <b class="qst">A2.</b>function callback() <br>
+    { <br>
+    let count=1; <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    setTimeout(()=>{ <br>
+    console.log(count++); <br>
+    },7000); <br>
+    },6000); <br>
+    },5000); <br>
+    },4000); <br>
+    },3000); <br>
+    },2000); <br>
+    },1000); <br>
+    callback(); <br><br>
+    <b class="qst">Q3.</b>
+    <b class="ans">Write a promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2
+        should be printed after 2 sec, 3 should be printed after 3 sec, and so on. <br>
+        Explain callback hell. <br>
+        Numbers <br>
+        1 <br>
+        2 <br>
+        3 <br>
+        4 <br>
+        5 <br>
+        6 <br>
+        7 <br><br>
+    </b>
+    <b class="qst">A3.</b>let count = 1; <br>
+    function timeOut(i) { <br>
+    return new Promise((resolve, reject) => { <br>
+    setTimeout(() => { <br>
+    resolve(count++); <br>
+    }, 7 * 1000 * i) <br>
+    }); <br>
+    } <br>
+    for (let i = 1; i <= 7; i++) { timeOut(i).then((x)=> console.log('counter:', x)) <br>
+    } <br><br>
+
+    <b class="qst">Q4.</b>
+    <b class="ans">Create a promise function accepting an argument, if yes is passed to the function then it should
+        go
+        to resolved state and print Promise Resolved, and if nothing is passed
+        then it should go to reject the state and catch the error and print Promise Rejected
+    </b> <br><br>
+    <b class="qst">A4.</b>const promisefun = new Promise((resolve,reject)=>{
+    let count=10;
+    if(count===10){
+    resolve("Successfully Resolved")
+    }
+    else
+    {
+    reject("Number not same")
+    }
+    })
+    promisefun.then((x)=>{
+    console.log(x);
+    }) 
+    promisefun.catch((x)=>{
+    console.log(x);
+    })<br><br>
+
+    <b class="qst">Q5.</b>
+    <b class="ans">
+        Create examples to explain callback function.
+    </b> <br><br>
+    <b class="qst">A5.</b>
+    // function <br>
+    function greet(name, callback) <br>
+    { <br>
+    console.log('Hi' + ' ' + name); <br>
+    callback(); <br>
+    } <br>
+    // callback function <br>
+    function callMe() <br>
+    { <br>
+    console.log('I am callback function'); <br>
+    } <br>
+    // passing function as an argument br
+    greet('Preeti', callMe); <br><br>
+
+    <b class="qst">Q6.</b>
+    <b class="ans">
+        Create examples to explain callback hell function.
+    </b> <br><br>
+    <b class="qst">A6.</b>addition(2,function(addRes,err) <br>
+    { <br>
+    if(!err) <br>
+    { <br>
+    Subtract(addRes,function(subRes,err) <br>
+    { <br>
+    if(!err){ <br>
+    multiplication(subRes,function(mulRes,err){ <br>
+    console.log(mulRes); <br>
+    }); <br>
+    } <br>
+    }); <br>
+    } <br>
+    }); <br>
+    function addition(val,callback){ <br>
+    callback(val+5,false); <br>
+    } <br>
+    function Subtract(val,callback){ <br>
+    callback(val-3,false); <br>
+    } <br>
+    function multiplication(val,callback){ <br>
+    callback(val*5,false); <br>
+    } <br> <br>
+
+    <b class="qst">Q7.</b>
+    <b class="ans">Create examples to explain promises function.</b> <br><br>
+    <b class="qst">A7.</b>function myDisplayer(some) <br>
+    { <br>
+    document.getElementById("demo").innerHTML = some; <br>
+    } <br>
+    let myPromise = new Promise(function(myResolve, myReject) <br>
+    { <br>
+    let x = 0; <br>
+    // The producing code (this may take some time) <br>
+    if (x == 0) <br>
+    { <br>
+    myResolve("OK"); <br>
+    } else { <br>
+    myReject("Error"); <br>
+    } <br>
+    }); <br>
+    myPromise.then( <br>
+    function(value) {myDisplayer(value);}, <br>
+    function(error) {myDisplayer(error);} <br>
+    ); <br><br>
+
+    <b class="qst">Q8.</b>
+    <b class="ans">Create examples to explain async await function.</b> <br><br>
+    <b class="qst">A8.</b><b>Async.</b>const getData = async() => { <br>
+    var data = "Hello World"; <br>
+    return data; <br>
+    } <br>
+    getData().then(data => console.log(data)); <br><br>
+    <b>Await.</b>const getData = async() => { <br>
+    var y = await "Hello World"; <br>
+    console.log(y); <br>
+    } <br>
+    console.log(1); <br>
+    getData(); <br>
+    console.log(2); <br><br>
+
+    <b class="qst">Q9.</b>
+    <b class="ans">Create examples to explain promise.all function</b> <br><br>
+    <b class="qst">A9.</b>
+    // Simple promise that resolves <br>
+    // after a given time <br>
+    const tOut = (t) => { <br>
+    return new Promise((resolve, reject) => { <br>
+    setTimeout(() => { <br>
+    resolve(`Completed in ${t}`) <br>
+    }, t) <br>
+    }) <br>
+    } <br>
+    // Resolving a normal promise <br>
+    tOut(1000).then(result => document.write(result+"<br>")) <br>
+    // Completed in 1000 <br>
+    // Promise.all <br>
+    Promise.all([tOut(1000), tOut(2000)]).then(result => document.write(result)) <Br>
+</body>
+
+</html>
